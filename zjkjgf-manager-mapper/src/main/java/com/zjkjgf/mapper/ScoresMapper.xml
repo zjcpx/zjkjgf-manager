@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjkjgf.mapper.ScoresMapper" >
+  <resultMap id="BaseResultMap" type="com.zjkjgf.pojo.Scores" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="vottingPerson" property="vottingperson" jdbcType="VARCHAR" />
+    <result column="matchProject" property="matchproject" jdbcType="VARCHAR" />
+    <result column="hotScores" property="hotscores" jdbcType="INTEGER" />
+    <result column="specialistScores" property="specialistscores" jdbcType="INTEGER" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="modifyTime" property="modifytime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, vottingPerson, matchProject, hotScores, specialistScores, createTime, modifyTime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zjkjgf.pojo.ScoresExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from scores
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from scores
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from scores
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zjkjgf.pojo.ScoresExample" >
+    delete from scores
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zjkjgf.pojo.Scores" >
+    insert into scores (id, vottingPerson, matchProject, 
+      hotScores, specialistScores, createTime, 
+      modifyTime)
+    values (#{id,jdbcType=BIGINT}, #{vottingperson,jdbcType=VARCHAR}, #{matchproject,jdbcType=VARCHAR}, 
+      #{hotscores,jdbcType=INTEGER}, #{specialistscores,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{modifytime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjkjgf.pojo.Scores" >
+    insert into scores
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="vottingperson != null" >
+        vottingPerson,
+      </if>
+      <if test="matchproject != null" >
+        matchProject,
+      </if>
+      <if test="hotscores != null" >
+        hotScores,
+      </if>
+      <if test="specialistscores != null" >
+        specialistScores,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="modifytime != null" >
+        modifyTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="vottingperson != null" >
+        #{vottingperson,jdbcType=VARCHAR},
+      </if>
+      <if test="matchproject != null" >
+        #{matchproject,jdbcType=VARCHAR},
+      </if>
+      <if test="hotscores != null" >
+        #{hotscores,jdbcType=INTEGER},
+      </if>
+      <if test="specialistscores != null" >
+        #{specialistscores,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifytime != null" >
+        #{modifytime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zjkjgf.pojo.ScoresExample" resultType="java.lang.Integer" >
+    select count(*) from scores
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update scores
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.vottingperson != null" >
+        vottingPerson = #{record.vottingperson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.matchproject != null" >
+        matchProject = #{record.matchproject,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hotscores != null" >
+        hotScores = #{record.hotscores,jdbcType=INTEGER},
+      </if>
+      <if test="record.specialistscores != null" >
+        specialistScores = #{record.specialistscores,jdbcType=INTEGER},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifytime != null" >
+        modifyTime = #{record.modifytime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update scores
+    set id = #{record.id,jdbcType=BIGINT},
+      vottingPerson = #{record.vottingperson,jdbcType=VARCHAR},
+      matchProject = #{record.matchproject,jdbcType=VARCHAR},
+      hotScores = #{record.hotscores,jdbcType=INTEGER},
+      specialistScores = #{record.specialistscores,jdbcType=INTEGER},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      modifyTime = #{record.modifytime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjkjgf.pojo.Scores" >
+    update scores
+    <set >
+      <if test="vottingperson != null" >
+        vottingPerson = #{vottingperson,jdbcType=VARCHAR},
+      </if>
+      <if test="matchproject != null" >
+        matchProject = #{matchproject,jdbcType=VARCHAR},
+      </if>
+      <if test="hotscores != null" >
+        hotScores = #{hotscores,jdbcType=INTEGER},
+      </if>
+      <if test="specialistscores != null" >
+        specialistScores = #{specialistscores,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifytime != null" >
+        modifyTime = #{modifytime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjkjgf.pojo.Scores" >
+    update scores
+    set vottingPerson = #{vottingperson,jdbcType=VARCHAR},
+      matchProject = #{matchproject,jdbcType=VARCHAR},
+      hotScores = #{hotscores,jdbcType=INTEGER},
+      specialistScores = #{specialistscores,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      modifyTime = #{modifytime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
