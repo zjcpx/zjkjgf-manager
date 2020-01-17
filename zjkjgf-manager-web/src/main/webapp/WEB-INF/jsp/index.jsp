@@ -53,6 +53,9 @@
 	</div>
 	<!-- 结果窗口 -->
 	<div id="result" class="container">
+		<div id="content">
+			
+		</div>
 	</div>
 	<!-- 人气投票浮动区 -->
 	<div id="hotVotbtn" class="col-xs-12">
@@ -338,11 +341,14 @@
 			});
 		var resultHTML = '';
 		for (var i = 0,len = projectList.length; i < len; i++){
-			resultHTML += '<div id = "result'+(i+1)+'" class="col-xs-12 resultStyle" style = "width:25px;height:'+specialresultList[i]+'px;left:'+i*45+'px"><p>'+projectList[i].projectname+'共<span>'+specialresultList[i]+'</span>分</p></div>';
+			var proName = projectList[i].projectname;
+			proName = proName.substring(0,4);
+			console.log(proName);
+			resultHTML += '<div class ="tttt" style = "left:'+(i+1)*210+'px"><div class = "proName"><p>'+proName+'</p></div><div id = "result'+(i+1)+'" class="col-xs-12 resultStyle" style = "height:'+specialresultList[i]+'px; background-color : #FF'+i+'"><p style="line-height:'+specialresultList[i]+'px">'+specialresultList[i]+'</span>分</p></div></div>';
 
 		}
-		resultHTML += '<div class="col-xs-12" id="goback"><p style="text-align: center;"><button type="button" class="btn btn-primary" id="retVoting" onclick = "showSpeialVotting(event,this)">返回投票区</button></p></div>'
-		$('#result').append(resultHTML);
+		/*resultHTML += '<div class="col-xs-12" id="goback"><p style="text-align: center;"><button type="button" class="btn btn-primary" id="retVoting" onclick = "showSpeialVotting(event,this)">返回投票区</button></p></div>'*/
+		$('#content').append(resultHTML);
 	}
 	//初始化人气比赛的DIV
 	function showHotMatch(){

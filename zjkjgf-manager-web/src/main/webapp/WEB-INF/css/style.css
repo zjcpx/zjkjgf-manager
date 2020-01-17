@@ -203,23 +203,65 @@ h5{
 	position: absolute;
 	box-shadow: #abc 5px 5px 15px 2px ;
 }
-.resultStyle{
+.tttt{
 	position: absolute;
-	padding: 8px;
-	left: 10px;
-	top: 0px;
-	border-bottom-left-radius: 20px;
-	border-bottom-right-radius:20px;
-	background-color: #abcdef;
-	box-shadow: darkgrey 5px 5px 10px 1px ;
+	bottom: 100px;
+	border:1px solid #6b019f;
+	width: 75px;
+	height: 400px;
+	background: #c6caf4;
+	border-radius:20px;
 }
-.resultStyle span{
+.proName{
+	position: absolute;
+	bottom: -80px;
+	width: 75px;
+	height: 75px;
+	border-radius: 50%;
+	background: #F00;
+	border:2px solid #FF0;
+}
+.proName p{
+	width: 75px;
+	word-wrap: break-word;
+	color:#fff;
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 75px;
+}
+.resultStyle{
+
+	position: absolute;
+	left: 1px;
+	bottom: 0px;
+	width:70px;
+	border-radius: 20px;
+	border:1px solid #aa04fc;
+	box-shadow: darkgrey 1px 1px 5px 1px ;
+}
+
+.resultStyle p{
+	width: 75px;
+	white-space:nowrap;
 	color: #F00;
+	font-size: 20px;
 	font-weight: 700;
 }
 
 #result{
+	height: 100%;
+	width: 100%;
 	display:none;
+	background: #ff0000 url(/images/bg1.gif) no-repeat fixed top;
+}
+#content{
+	width:auto;
+	height: 600px;
+	margin: 20px auto;
+	border:1px solid #fff;
+	position:relative;
+	padding: 100px;
+
 }
 .hotresultStyle{
 	position: absolute;
